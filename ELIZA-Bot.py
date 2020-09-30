@@ -66,6 +66,21 @@ print(replace_pronouns("my last birthday"))
 print(replace_pronouns("when you went to Florida"))
 print(replace_pronouns("I had my own castle"))
 
+
+
+
+
+### --- NEW MATCH RULE FUNCTION --- ###
+
+def match_rule(rules, message):
+    for pattern, responses in rules.items():
+        match = re.search(pattern, message)
+        if match is not None:
+            response = random.choice(responses)
+            var = match.group(1) if '{0}' in response else None
+            return response, var
+    return "default", None
+
 # Create templates
 bot_template = "BOT : {0}"
 user_template = "USER : {0}"
